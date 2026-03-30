@@ -1,0 +1,19 @@
+import numpy
+
+# 1. Read N (rows) and M (columns)
+n, m = map(int, input().split())
+
+# 2. Read the next N lines to create the matrix
+matrix = []
+for _ in range(n):
+    row = list(map(int, input().split()))
+    matrix.append(row)
+
+# 3. Convert the list of lists into a NumPy array
+my_array = numpy.array(matrix)
+
+# 4. Print the Transpose
+print(numpy.transpose(my_array))
+
+# 5. Print the Flattened array
+print(my_array.flatten())
