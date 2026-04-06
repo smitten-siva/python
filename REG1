@@ -1,0 +1,5 @@
+import re
+n=int(input())
+for _ in range (n):
+    s=input()
+    print(bool(re.match(r'^[+-]?\d*\.\d+$',s)))
