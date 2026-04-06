@@ -1,0 +1,6 @@
+import re
+matches=re.findall(r'(?<=[^aeiouAEIOU])([aeiouAEIOU]{2,})(?=[^aeiouAEIOU])',input())
+if matches:
+    print('\n'.join(matches)) 
+else:
+    print(-1)
