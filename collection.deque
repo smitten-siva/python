@@ -1,0 +1,14 @@
+from collections import deque
+
+n = int(input())
+d = deque()
+
+for _ in range(n):
+    line = input().split()
+    method = line[0]
+    if len(line) > 1:
+        getattr(d, method)(line[1])
+    else:
+        getattr(d, method)()
+
+print(*d)
