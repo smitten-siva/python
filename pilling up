@@ -1,0 +1,24 @@
+from collections import deque
+
+t = int(input())
+
+for _ in range(t):
+    n = int(input())
+    cubes = deque(map(int, input().split()))
+    
+    last_stacked = float('inf')
+    possible = True
+    
+    while cubes:
+        left = cubes[0]
+        right = cubes[-1]
+        
+        if left >= right and left <= last_stacked:
+            last_stacked = cubes.popleft()
+        elif right > left and right <= last_stacked:
+            last_stacked = cubes.pop()
+        else:
+            possible = False
+            break
+            
+    print("Yes" if possible else "No")
