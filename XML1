@@ -1,0 +1,22 @@
+import xml.etree.ElementTree as etree
+
+def get_attr_number(node):
+    # Sum the number of attributes for this node and all its descendants
+    count = len(node.attrib)
+    for child in node:
+        count += get_attr_number(child)
+    return count
+
+if __name__ == '__main__':
+    import sys
+    # Read the entire XML document from input
+    input_data = sys.stdin.read().splitlines()
+    n = int(input_data[0])
+    xml = "\n".join(input_data[1:])
+    
+    # Parse the XML string into a tree
+    tree = etree.ElementTree(etree.fromstring(xml))
+    root = tree.getroot()
+    
+    # Print the total score
+    print(get_attr_number(root))
