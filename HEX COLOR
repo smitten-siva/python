@@ -1,0 +1,17 @@
+import re
+
+# Regex breakdown:
+# (?<=[: ])  -> Positive lookbehind: ensure it follows a ':' or ' '
+# #          -> Match the literal '#'
+# (?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6}) -> Match 3 or 6 hex digits
+# (?=[;,\)]) -> Positive lookahead: ensure it's followed by ';', ',', or ')'
+pattern = r'(?<=[: ])#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})(?=[;,\)])'
+
+n = int(input())
+for _ in range(n):
+    line = input()
+    matches = re.findall(pattern, line)
+    if matches:
+        for m in matches:
+            # Re-attach the '#' because findall only returns the group
+            print(f"#{m}")
