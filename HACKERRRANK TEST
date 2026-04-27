@@ -1,0 +1,36 @@
+import os
+
+def transformSentence(sentence):
+    # Split the sentence by spaces
+    words = sentence.split(' ')
+    transformed_words = []
+    
+    for word in words:
+        # Start with the first character (it never changes)
+        new_word = word[0]
+        
+        # Transform subsequent characters
+        for i in range(1, len(word)):
+            prev = word[i-1]
+            curr = word[i]
+            
+            # Alphabetical comparison (ignoring case)
+            if prev.lower() < curr.lower():
+                new_word += curr.upper()
+            elif prev.lower() > curr.lower():
+                new_word += curr.lower()
+            else:
+                new_word += curr
+                
+        transformed_words.append(new_word)
+    
+    # Rejoin words with single spaces
+    return ' '.join(transformed_words)
+
+if __name__ == '__main__':
+    # This part is usually provided by HackerRank
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    sentence = input()
+    result = transformSentence(sentence)
+    fptr.write(result + '\n')
+    fptr.close()
