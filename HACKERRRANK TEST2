@@ -1,0 +1,23 @@
+def transformSentence(sentence):
+    words = sentence.split(' ')
+    transformed_words = []
+    
+    for word in words:
+        # Initialize new_word with ONLY the first character
+        new_word = word[0]
+        
+        for i in range(1, len(word)):
+            prev_char = word[i-1]
+            curr_char = word[i]
+            
+            # Use .lower() to correctly determine alphabetical order
+            if prev_char.lower() < curr_char.lower():
+                new_word += curr_char.upper()
+            elif prev_char.lower() > curr_char.lower():
+                new_word += curr_char.lower()
+            else:
+                new_word += curr_char
+                
+        transformed_words.append(new_word)
+    
+    return ' '.join(transformed_words)
