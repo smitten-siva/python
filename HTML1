@@ -1,0 +1,23 @@
+from html.parser import HTMLParser
+
+class MyHTMLParser(HTMLParser):
+    def handle_starttag(self, tag, attrs):
+        # Print the tag name
+        print(tag)
+        # attrs is a list of tuples: (attribute_name, value)
+        for attr, value in attrs:
+            print(f"-> {attr} > {value}")
+
+    def handle_startendtag(self, tag, attrs):
+        # Handles self-closing tags like <br/> or <param />
+        print(tag)
+        for attr, value in attrs:
+            print(f"-> {attr} > {value}")
+
+# Read input lines
+n = int(input())
+html_code = "\n".join([input() for _ in range(n)])
+
+# Initialize and feed the parser
+parser = MyHTMLParser()
+parser.feed(html_code)
